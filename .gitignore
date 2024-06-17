@@ -1,3 +1,15 @@
+# IDEs
+.vscode/
+.superinvoke_cache/
+.idea/
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+
+# MacOS
+.DS_Store
+
 # Yarn
 .yarn/*
 !.yarn/patches
@@ -29,9 +41,8 @@ web_modules/
 .netlify
 .turbo
 .vercel
-.DS_Store
 
-# Env
+# Environment variables
 *.env*
 
 # Logs
