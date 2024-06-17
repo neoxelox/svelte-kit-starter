@@ -31,6 +31,9 @@ web_modules/
 .vercel
 .DS_Store
 
+# Env
+*.env*
+
 # Logs
 logs
 *.log
