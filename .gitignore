@@ -29,6 +29,7 @@ web_modules/
 .netlify
 .turbo
 .vercel
+.DS_Store
 
 # Logs
 logs
