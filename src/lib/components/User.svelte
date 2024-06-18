@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { UserEntity } from "$lib/entities/user";
+  import * as entities from "$lib/entities";
   import dayjs from "$lib/utils/datetime";
 
-  type $$Props = UserEntity;
+  type $$Props = entities.User;
   export let name: $$Props["name"];
   export let email: $$Props["email"];
   export let birthday: $$Props["birthday"];

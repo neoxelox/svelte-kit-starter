@@ -1,18 +1,18 @@
 <script lang="ts">
   import User from "$lib/components/User.svelte";
-  import type { UserEntity } from "$lib/entities/user";
-  import type { GetUsersResponse } from "$lib/payloads/user";
+  import * as entities from "$lib/entities";
+  import * as payloads from "$lib/payloads";
   import { api } from "$lib/services/api";
   import dayjs from "$lib/utils/datetime";
 
-  let response: Promise<GetUsersResponse>;
-  let users: UserEntity[] = [];
+  let response: Promise<payloads.GetUsersResponse>;
+  let users: entities.User[] = [];
 
   let getUsers = async () => {
-    response = api.get<GetUsersResponse>("/users");
+    response = api.get<payloads.GetUsersResponse>("/users");
     response.then((response) => {
       users = response.users.map(
-        (user) => <UserEntity>{ name: user.name, email: user.email, birthday: dayjs(user.birthday).toDate() },
+        (user) => <entities.User>{ name: user.name, email: user.email, birthday: dayjs(user.birthday).toDate() },
       );
     });
   };

@@ -1,6 +1,7 @@
 import { goto } from "$app/navigation";
 import { page } from "$app/stores";
-import { ApiError, ApiErrorCode } from "$lib/payloads/error";
+import * as entities from "$lib/entities/error";
+import * as payloads from "$lib/payloads";
 import { token } from "$lib/stores/api";
 import { get } from "svelte/store";
 
@@ -33,7 +34,7 @@ export class api {
       });
     } catch (error) {
       // Do something with error...
-      throw new ApiError(ApiErrorCode.ERR_SERVER_GENERIC, error as any, 500); // eslint-disable-line @typescript-eslint/no-explicit-any
+      throw new entities.ApiError(entities.ApiErrorCode.ERR_SERVER_GENERIC, error as any, 500); // eslint-disable-line @typescript-eslint/no-explicit-any
     }
 
     if (!response.ok) {
@@ -42,15 +43,15 @@ export class api {
         goto(`${this.AUTH_PATH}?location=${path}`);
       }
 
-      let code = ApiErrorCode.ERR_SERVER_GENERIC;
+      let code = entities.ApiErrorCode.ERR_SERVER_GENERIC;
       let message = response.statusText;
       const status = response.status;
 
       try {
-        const error = await response.json();
+        const error: payloads.ApiError = await response.json();
 
         if (error.code) {
-          code = ApiErrorCode[error.code as keyof typeof ApiErrorCode];
+          code = entities.ApiErrorCode[error.code as keyof typeof entities.ApiErrorCode];
         }
 
         if (error.message) {
@@ -60,7 +61,7 @@ export class api {
       } catch {}
 
       // Do something with error...
-      throw new ApiError(code, message, status);
+      throw new entities.ApiError(code, message, status);
     }
 
     return response.json();
