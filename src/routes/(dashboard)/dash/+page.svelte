@@ -27,6 +27,6 @@
   <span>Going back..</span>
 {:then}
   {#each users as user (user.name)}
-    <User {user} />
+    <User {...user} />
   {/each}
 {/await}
