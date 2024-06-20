@@ -28,7 +28,7 @@ module.exports = {
     },
   ],
   plugins: ["svelte", "html", "@typescript-eslint", "prettier"],
-  ignorePatterns: [".svelte-kit/", "build/", "dist/"],
+  ignorePatterns: [],
   globals: {
     App: "writable",
   },
