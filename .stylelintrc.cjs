@@ -9,6 +9,7 @@ module.exports = {
   ],
   plugins: ["stylelint-scss", "stylelint-order"],
   rules: {
+    "at-rule-no-unknown": null,
     "property-no-unknown": [true, { ignoreProperties: ["font-named-instance"] }],
     "color-hex-length": "long",
     "no-descending-specificity": null,
