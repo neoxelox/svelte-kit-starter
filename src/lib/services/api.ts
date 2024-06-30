@@ -52,6 +52,7 @@ export class api {
 
         if (error.code) {
           code = entities.ApiErrorCode[error.code as keyof typeof entities.ApiErrorCode];
+          message = entities.ApiErrorMessage[code];
         }
 
         if (error.message) {
