@@ -1,6 +1,6 @@
 import { goto } from "$app/navigation";
 import { page } from "$app/stores";
-import * as entities from "$lib/entities/error";
+import * as entities from "$lib/entities";
 import * as payloads from "$lib/payloads";
 import { token } from "$lib/stores/api";
 import { get } from "svelte/store";
