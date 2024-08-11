@@ -1,4 +1,3 @@
-import { goto } from "$app/navigation";
 import { page } from "$app/stores";
 import * as entities from "$lib/entities";
 import * as payloads from "$lib/payloads";
@@ -38,9 +37,10 @@ export class api {
     }
 
     if (!response.ok) {
-      const path = get(page).url.pathname;
-      if (response.status === 401 && path !== this.AUTH_PATH) {
-        goto(`${this.AUTH_PATH}?location=${path}`);
+      const url = get(page).url;
+      const path = url.pathname + url.search;
+      if (response.status === 401 && !path.startsWith(this.AUTH_PATH)) {
+        window.location.href = window.location.origin + `${this.AUTH_PATH}?location=${encodeURIComponent(path)}`;
       }
 
       let code = entities.ApiErrorCode.ERR_SERVER_GENERIC;
